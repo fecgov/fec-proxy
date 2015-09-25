@@ -1,0 +1,7 @@
+---
+env:
+  PROXIES: |
+    {
+      "/": "https://fec-dev-cms.18f.gov",
+      "/data": "https://fec-dev-web.18f.gov"
+    }
