@@ -1,4 +1,7 @@
 ---
+domain: 18f.gov
+applications:
+  - name: fec-proxy
 env:
   PROXIES: |
     {
