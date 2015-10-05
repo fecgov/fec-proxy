@@ -18,3 +18,7 @@ Install autopilot:
 Deploy:
 
     cf zero-downtime-push fec-proxy -f manifest.yml
+
+## Notes
+
+**fec-proxy** uses the openresty nginx bundle for extras like HMAC signing. The bundled `nginx.tgz` file was built under trusty64 using vagrant.
