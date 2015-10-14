@@ -1,5 +1,6 @@
 ---
 inherit: manifest_base.yml
+host: fec-proxy
 services:
   - fec-creds-dev
 env:
