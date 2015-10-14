@@ -1,0 +1,12 @@
+---
+domain: 18f.gov
+buildpack: "https://github.com/jmcarp/staticfile-buildpack.git"
+applications:
+  - name: proxy
+    memory: 64M
+env:
+  PROXIES: |
+    {
+      "/": "https://fec-dev-cms.18f.gov",
+      "/data": "https://fec-dev-web.18f.gov"
+    }

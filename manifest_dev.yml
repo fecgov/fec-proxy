@@ -1,8 +1,5 @@
 ---
-domain: 18f.gov
-buildpack: "https://github.com/jmcarp/staticfile-buildpack.git"
-applications:
-  - name: fec-proxy
+inherit: manifest_base.yml
 services:
   - fec-creds-dev
 env:

@@ -1,0 +1,12 @@
+---
+inherit: manifest_base.yml
+domain: beta.fec.gov
+no-hostname: true
+services:
+  - fec-creds-prod
+env:
+  PROXIES: |
+    {
+      "/": "https://fec-prod-cms.18f.gov",
+      "/data": "https://fec-prod-web.18f.gov"
+    }
