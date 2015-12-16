@@ -1,0 +1,11 @@
+---
+inherit: manifest_base.yml
+host: fec-stage-proxy
+services:
+  - fec-creds-stage
+env:
+  PROXIES: |
+    {
+      "/": "https://fec-stage-cms.18f.gov",
+      "/data": "https://fec-stage-web.18f.gov"
+    }
