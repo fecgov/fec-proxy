@@ -1,0 +1,11 @@
+---
+inherit: manifest_base.yml
+host: fec-feature-proxy
+services:
+  - fec-creds-feature
+env:
+  PROXIES: |
+    {
+      "/": "https://fec-feature-cms.18f.gov",
+      "/data": "https://fec-feature-web.18f.gov"
+    }
