@@ -7,5 +7,6 @@ env:
   PROXIES: |
     {
       "/": "https://fec-feature-cms.18f.gov",
-      "/data": "https://fec-feature-web.18f.gov"
+      "/data": "https://fec-feature-web.18f.gov",
+      "/regulations": "https://fec-feature-eregs.18f.gov"
     }
