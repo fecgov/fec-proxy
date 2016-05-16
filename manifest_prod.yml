@@ -8,5 +8,6 @@ env:
   PROXIES: |
     {
       "/": "https://fec-prod-cms.18f.gov",
-      "/data": "https://fec-prod-web.18f.gov"
+      "/data": "https://fec-prod-web.18f.gov",
+      "/regulations": "https://fec-prod-eregs.18f.gov"
     }
