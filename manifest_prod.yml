@@ -1,6 +1,7 @@
 ---
 inherit: manifest_base.yml
 domain: beta.fec.gov
+instances: 2
 no-hostname: true
 services:
   - fec-creds-prod
