@@ -17,7 +17,7 @@ Install autopilot:
 
 Deploy:
 
-    cf zero-downtime-push fec-proxy -f manifest.yml
+    cf zero-downtime-push proxy -f manifest.yml
 
 ## Notes
 
