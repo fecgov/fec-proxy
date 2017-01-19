@@ -15,9 +15,10 @@ Install autopilot:
     go get github.com/concourse/autopilot
     cf install-plugin $GOPATH/bin/autopilot
 
-Deploy:
+Deploy to desired space:
 
-    cf zero-downtime-push proxy -f manifest.yml
+    cf target -s space
+    cf zero-downtime-push proxy -f manifest_space.yml
 
 ## Notes
 
