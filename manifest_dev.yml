@@ -10,3 +10,4 @@ env:
       "/data": "https://fec-dev-web.18f.gov",
       "/regulations": "https://fec-dev-eregs.18f.gov"
     }
+  S3_BUCKET_URL: "https://cg-449d4df6-4b9e-4539-891f-363302ca5907.s3-us-gov-west-1.amazonaws.com"
