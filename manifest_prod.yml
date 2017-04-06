@@ -1,10 +1,6 @@
 ---
 inherit: manifest_base.yml
-routes:
-#- route: beta.fec.gov
-- route: fec-prod-proxy.app.cloud.gov
-- route: transition.fec.gov
-instances: 2
+host: fec-prod-proxy
 services:
   - fec-creds-prod
 env:
@@ -14,5 +10,5 @@ env:
       "/data": "https://fec-prod-web.app.cloud.gov",
       "/regulations": "https://fec-prod-eregs.app.cloud.gov"
     }
-  S3_BUCKET_URL: "https://cg-47928592-406c-4536-8234-99b896e8d57d.s3-us-gov-west-1.amazonaws.com"
-  S3_TRANSITION_URL: "https://cg-9b32b324-4671-48ca-b13b-a37b742f7443.s3-website-us-gov-west-1.amazonaws.com"
+  S3_BUCKET_URL: "https://cg-449d4df6-4b9e-4539-891f-363302ca5907.s3-us-gov-west-1.amazonaws.com"
+  S3_TRANSITION_URL: "http://cg-9b32b324-4671-48ca-b13b-a37b742f7443.s3-website-us-gov-west-1.amazonaws.com"
