@@ -1,6 +1,9 @@
 ---
 inherit: manifest_base.yml
-host: fec-prod-proxy
+routes: 
+- route: beta.fec.gov
+- route: fec-prod-proxy.app.cloud.gov
+- route: transition.fec.gov
 services:
   - fec-creds-prod
 env:
