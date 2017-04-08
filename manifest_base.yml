@@ -1,5 +1,4 @@
 ---
-domain: 18f.gov
 buildpack: "https://github.com/jmcarp/staticfile-buildpack.git"
 applications:
   - name: proxy
@@ -7,8 +6,8 @@ applications:
 env:
   PROXIES: |
     {
-      "/": "https://fec-dev-cms.18f.gov",
-      "/data": "https://fec-dev-web.18f.gov",
-      "/regulations": "https://fec-dev-eregs.18f.gov"
+      "/": "https://fec-dev-cms.app.cloud.gov",
+      "/data": "https://fec-dev-web.app.cloud.gov",
+      "/regulations": "https://fec-dev-eregs.app.cloud.gov"
     }
   S3_BUCKET_URL: "https://cg-449d4df6-4b9e-4539-891f-363302ca5907.s3-us-gov-west-1.amazonaws.com"

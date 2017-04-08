@@ -6,8 +6,8 @@ services:
 env:
   PROXIES: |
     {
-      "/": "https://fec-stage-cms.18f.gov",
-      "/data": "https://fec-stage-web.18f.gov",
-      "/regulations": "https://fec-stage-eregs.18f.gov"
+      "/": "https://fec-stage-cms.app.cloud.gov",
+      "/data": "https://fec-stage-web.app.cloud.gov",
+      "/regulations": "https://fec-stage-eregs.app.cloud.gov"
     }
   S3_BUCKET_URL: "https://cg-ca811ea5-b3e6-4792-ac55-2edf11f151ca.s3-us-gov-west-1.amazonaws.com"
