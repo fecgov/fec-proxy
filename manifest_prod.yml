@@ -1,6 +1,6 @@
 ---
 inherit: manifest_base.yml
-instances: 2
+instances: 4
 routes:
 - route: beta.fec.gov
 - route: fec-prod-proxy.app.cloud.gov
