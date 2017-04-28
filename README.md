@@ -1,6 +1,6 @@
 # fec-proxy
 
-Reverse proxy app to combine multiple applications.
+Reverse proxy app to combine multiple applications and redirect rules to create a smooth transition for when beta.fec.gov becomes fec.gov.
 
 ## Configure
 
@@ -19,7 +19,3 @@ Deploy to desired space:
 
     cf target -s space
     cf zero-downtime-push proxy -f manifest_space.yml
-
-## Notes
-
-**fec-proxy** uses the openresty nginx bundle for extras like HMAC signing. The bundled `nginx.tgz` file was built under trusty64 using vagrant.
