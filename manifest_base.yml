@@ -1,5 +1,5 @@
 ---
-buildpack: "https://github.com/jmcarp/staticfile-buildpack.git"
+buildpack: staticfile_buildpack
 applications:
   - name: proxy
     memory: 64M
