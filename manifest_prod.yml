@@ -5,6 +5,7 @@ routes:
 - route: beta.fec.gov
 - route: fec-prod-proxy.app.cloud.gov
 - route: transition.fec.gov
+- route: www.fec.gov
 services:
   - fec-creds-prod
 env:
