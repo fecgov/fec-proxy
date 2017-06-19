@@ -14,3 +14,4 @@ env:
     }
   S3_BUCKET_URL: "https://cg-449d4df6-4b9e-4539-891f-363302ca5907.s3-us-gov-west-1.amazonaws.com"
   S3_TRANSITION_URL: "https://cg-9b32b324-4671-48ca-b13b-a37b742f7443.s3-website-us-gov-west-1.amazonaws.com"
+  S3_LEGAL_AND_DOWNLOADS_URL: https://cg-cc8e3d72-34c9-411d-b369-96c0ce6572fd.s3-us-gov-west-1.amazonaws.com"
