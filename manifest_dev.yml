@@ -9,7 +9,6 @@ env:
   PROXIES: |
     {
       "/": "https://fec-dev-cms.app.cloud.gov",
-      "/data": "https://fec-dev-web.app.cloud.gov",
       "/regulations": "https://fec-dev-eregs.app.cloud.gov"
     }
   S3_BUCKET_URL: "https://cg-449d4df6-4b9e-4539-891f-363302ca5907.s3-us-gov-west-1.amazonaws.com"
