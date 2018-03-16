@@ -1,6 +1,10 @@
 ---
-inherit: manifest_base.yml
-host: fec-stage-proxy
+buildpack: staticfile_buildpack
+applications:
+  - name: proxy
+    memory: 64M
+routes:
+  - route: fec-stage-proxy.app.cloud.gov
 services:
   - fec-creds-stage
 env:
