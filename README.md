@@ -6,7 +6,7 @@ Reverse proxy app to combine multiple applications and redirect rules to create 
 
 Set the `PROXIES` environment variable to a JSON object mapping proxy routes to URLs. As an example, you can do this manually with a command similar to this:
 
-    cf set-env fec-proxy PROXIES='{"/": "https://app1.18f.gov", "/app2": "https://app1.18f.gov"}'
+    cf set-env fec-proxy PROXIES='{"/": "https://app1.app.cloud.gov", "/app2": "https://app1.app.cloud.gov"}'
 
 *Note that this is currently set and configured in the manifest files for deployment.*
 
