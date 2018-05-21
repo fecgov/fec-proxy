@@ -12,7 +12,7 @@ Set the `PROXIES` environment variable to a JSON object mapping proxy routes to 
 
 ## Deployment
 
-Unlike the other applications, the **`master`** branch is usually deployed to all three environments, and there is no special workflow for any updates or hotfixes.
+Unlike the other applications, the **`master`** branch is usually deployed to all three environments, and there is no special workflow for any updates or hotfixes. However, it is best to deploy the proxy app at night because it may temporarily effect our routes and wagtail work during deploy.
 
 Before you start, make sure you have the [`autopilot` (installation instructions)](https://github.com/contraband/autopilot#installation) Cloud Foundry plugin installed.  You can check to see if you have the plugin installed by running `cf plugins` checking if `autopilot` is in the list.
 
