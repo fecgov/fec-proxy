@@ -1,4 +1,5 @@
 ---
+stack: cflinuxfs3
 buildpack: staticfile_buildpack
 applications:
   - name: proxy
