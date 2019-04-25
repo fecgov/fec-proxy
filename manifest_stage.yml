@@ -6,6 +6,7 @@ applications:
     memory: 64M
 routes:
   - route: fec-stage-proxy.app.cloud.gov
+  - route: stage.fec.gov
 services:
   - fec-creds-stage
 env:
