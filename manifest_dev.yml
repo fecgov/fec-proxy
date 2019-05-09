@@ -6,6 +6,7 @@ applications:
     memory: 64M
 routes:
   - route: fec-dev-proxy.app.cloud.gov
+  - route: dev.fec.gov
 services:
   - fec-creds-dev
 env:
