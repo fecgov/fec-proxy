@@ -3,7 +3,7 @@ stack: cflinuxfs3
 buildpack: staticfile_buildpack
 applications:
   - name: proxy
-    memory: 128M
+    memory: 256M
 instances: 4
 routes:
   - route: beta.fec.gov

@@ -3,7 +3,7 @@ stack: cflinuxfs3
 buildpack: staticfile_buildpack
 applications:
   - name: proxy
-    memory: 128M
+    memory: 256M
 routes:
   - route: fec-stage-proxy.app.cloud.gov
   - route: stage.fec.gov
