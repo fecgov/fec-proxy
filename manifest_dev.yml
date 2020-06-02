@@ -1,6 +1,6 @@
 ---
 stack: cflinuxfs3
-buildpack: staticfile_buildpack
+buildpack: nginx_buildpack
 applications:
   - name: proxy
     memory: 256M
