@@ -7,12 +7,15 @@ applications:
     routes:
       - route: fec-stage-proxy.app.cloud.gov
       - route: stage.fec.gov
+    stack: cflinuxfs3
+    buildpacks:
+      - staticfile_buildpack
     services:
       - fec-creds-stage
     env:
       PROXIES: |
         {
-          "/": "https://fec-stage-cms.app.cloud.gov",
+          "/": "https://fec-stage-cms.apps.internal:8080",
           "/regulations": "https://fec-stage-eregs.app.cloud.gov"
         }
       S3_BUCKET_URL: "https://cg-ca811ea5-b3e6-4792-ac55-2edf11f151ca.s3-us-gov-west-1.amazonaws.com"
