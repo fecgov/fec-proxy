@@ -1,19 +1,19 @@
 ---
-stack: cflinuxfs3
-buildpack: staticfile_buildpack
 applications:
   - name: proxy
-    memory: 256M
-routes:
-  - route: fec-stage-proxy.app.cloud.gov
-  - route: stage.fec.gov
-services:
-  - fec-creds-stage
-env:
-  PROXIES: |
-    {
-      "/": "https://fec-stage-cms.app.cloud.gov",
-      "/regulations": "https://fec-stage-eregs.app.cloud.gov"
-    }
-  S3_BUCKET_URL: "https://cg-ca811ea5-b3e6-4792-ac55-2edf11f151ca.s3-us-gov-west-1.amazonaws.com"
-  S3_LEGAL_AND_DOWNLOADS_URL: "https://cg-d3527d7d-0344-45b5-aab6-5a39d2aa409f.s3-us-gov-west-1.amazonaws.com"
+    instances: 1
+    memory: 512M
+    disk_quota: 256M
+    routes:
+      - route: fec-stage-proxy.app.cloud.gov
+      - route: stage.fec.gov
+    services:
+      - fec-creds-stage
+    env:
+      PROXIES: |
+        {
+          "/": "https://fec-stage-cms.app.cloud.gov",
+          "/regulations": "https://fec-stage-eregs.app.cloud.gov"
+        }
+      S3_BUCKET_URL: "https://cg-ca811ea5-b3e6-4792-ac55-2edf11f151ca.s3-us-gov-west-1.amazonaws.com"
+      S3_LEGAL_AND_DOWNLOADS_URL: "https://cg-d3527d7d-0344-45b5-aab6-5a39d2aa409f.s3-us-gov-west-1.amazonaws.com"
