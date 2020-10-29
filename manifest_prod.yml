@@ -1,23 +1,25 @@
 ---
-stack: cflinuxfs3
-buildpack: staticfile_buildpack
 applications:
   - name: proxy
-    memory: 256M
-instances: 4
-routes:
-  - route: beta.fec.gov
-  - route: fec-prod-proxy.app.cloud.gov
-  - route: transition.fec.gov
-  - route: www.fec.gov
-services:
-  - fec-creds-prod
-env:
-  PROXIES: |
-    {
-      "/": "https://fec-prod-cms.app.cloud.gov",
-      "/regulations": "https://fec-prod-eregs.app.cloud.gov"
-    }
-  S3_BUCKET_URL: "https://cg-47928592-406c-4536-8234-99b896e8d57d.s3-us-gov-west-1.amazonaws.com"
-  S3_TRANSITION_URL: "http://cg-9b32b324-4671-48ca-b13b-a37b742f7443.s3-website-us-gov-west-1.amazonaws.com"
-  S3_LEGAL_AND_DOWNLOADS_URL: "https://cg-519a459a-0ea3-42c2-b7bc-fa1143481f74.s3-us-gov-west-1.amazonaws.com"
+    instances: 4
+    memory: 512M
+    disk_quota: 256M
+    routes:
+      - route: beta.fec.gov
+      - route: fec-prod-proxy.app.cloud.gov
+      - route: transition.fec.gov
+      - route: www.fec.gov
+    stack: cflinuxfs3
+    buildpacks:
+      - staticfile_buildpack
+    services:
+      - fec-creds-prod
+    env:
+      PROXIES: |
+        {
+          "/": "https://fec-prod-cms.app.cloud.gov",
+          "/regulations": "https://fec-prod-eregs.app.cloud.gov"
+        }
+      S3_BUCKET_URL: "https://cg-47928592-406c-4536-8234-99b896e8d57d.s3-us-gov-west-1.amazonaws.com"
+      S3_TRANSITION_URL: "http://cg-9b32b324-4671-48ca-b13b-a37b742f7443.s3-website-us-gov-west-1.amazonaws.com"
+      S3_LEGAL_AND_DOWNLOADS_URL: "https://cg-519a459a-0ea3-42c2-b7bc-fa1143481f74.s3-us-gov-west-1.amazonaws.com"
