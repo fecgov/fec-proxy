@@ -21,6 +21,7 @@ Once the cli is installed, when you're ready to deploy any changes. Make sure yo
 ```sh
     cf target -s <space>
     cf push --strategy rolling proxy -f manifest_<space>.yml
+    cf add-network-policy proxy cms
 ```
 
 When the deployment is done, be sure to test the site to make sure everything is still functioning.
