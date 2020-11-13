@@ -1,0 +1,28 @@
+# Python CircleCI 2.0 configuration file
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+version: 2.1
+jobs:
+  deploy-job:
+    docker:
+      - image: cimg/base:2020.01
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install CF CLI
+          command: |
+            mkdir -p $HOME/bin
+            export PATH=$HOME/bin:$PATH
+            curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&version=7.1.0" | tar xzv -C $HOME/bin
+            cf install-plugin autopilot -f -r CF-Community
+
+      # TODO: Ask for manual approval first
+
+      - deploy:
+          name: Deploy Proxy
+          command: |
+            export PATH=$HOME/bin:$PATH
+            ./bin/cf_deploy.sh proxy fec-beta-fec {{ .Branch }}
