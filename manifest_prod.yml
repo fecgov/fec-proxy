@@ -17,7 +17,7 @@ applications:
     env:
       PROXIES: |
         {
-          "/": "https://fec-prod-cms.apps.internal:8080",
+          "/": "http://fec-prod-cms.apps.internal:8080",
           "/regulations": "https://fec-prod-eregs.app.cloud.gov"
         }
       S3_BUCKET_URL: "https://cg-47928592-406c-4536-8234-99b896e8d57d.s3-us-gov-west-1.amazonaws.com"
