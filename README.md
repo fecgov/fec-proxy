@@ -25,6 +25,7 @@ When you're ready to deploy any changes, make sure you are on the `master` branc
 ```sh
     cf target -s <space>
     cf push --strategy rolling proxy -f manifest_<space>.yml
+    cf add-network-policy proxy cms
 ```
 
 When the deployment is done, be sure to test the site to make sure everything is still functioning.
