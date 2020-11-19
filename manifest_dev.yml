@@ -5,7 +5,6 @@ applications:
     memory: 256M
     disk_quota: 256M
     routes:
-      - route: fec-dev-proxy.app.cloud.gov
       - route: dev.fec.gov
     stack: cflinuxfs3
     buildpacks:
