@@ -59,5 +59,6 @@ fi
 # Deploy app
 cf ${command} ${app} -f ${manifest}
 
-# Add network policy
+# Add network policies
 cf add-network-policy proxy cms
+cf add-network-policy proxy eregs
