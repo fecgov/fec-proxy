@@ -12,7 +12,11 @@ Set the `PROXIES` environment variable to a JSON object mapping proxy routes to 
 
 ## Deployment
 
-Unlike the other applications, the **`master`** branch is usually deployed to all three environments, and there is no special workflow for any updates or hotfixes. However, it is best to deploy the proxy app at night because it may temporarily effect our routes and wagtail work during deploy.
+The proxy follows [other projects](https://github.com/fecgov/openFEC#creating-a-release) for the release and hotfix processes. The changes will automatically deploy when PR's are merged, or the release is cut and deployed.
+
+## Manual deployment
+
+Manual deployment is an option if there are issues with CircleCI or you want more granular control of the process.
 
 Before you start, make sure you have version 7 of the [Cloud Foundry CLI](https://docs.cloudfoundry.org/devguide/cf-cli/install-go-cli.html) installed.
 
@@ -21,6 +25,7 @@ When you're ready to deploy any changes, make sure you are on the `master` branc
 ```sh
     cf target -s <space>
     cf push --strategy rolling proxy -f manifest_<space>.yml
+    cf add-network-policy proxy cms
 ```
 
 When the deployment is done, be sure to test the site to make sure everything is still functioning.
