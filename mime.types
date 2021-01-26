@@ -1,4 +1,5 @@
 types {
+
   application/java-archive              jar war ear;
   application/mac-binhex40              hqx;
   application/octet-stream              bin exe dll;
@@ -28,9 +29,15 @@ types {
   audio/mpeg                            mp3;
   audio/x-realaudio                     ra;
 
+  font/otf                              otf;
+  font/ttf                              ttf;
+  font/woff                             woff;
+  font/woff2                            woff2;
+
   image/gif                             gif;
   image/jpeg                            jpeg jpg;
   image/png                             png;
+  image/svg+xml                         svg;
   image/vnd.wap.wbmp                    wbmp;
   image/x-icon                          ico;
   image/x-jng                           jng;
