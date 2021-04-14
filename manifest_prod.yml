@@ -3,7 +3,7 @@ applications:
   - name: proxy
     instances: 4
     memory: 512M
-    disk_quota: 256M
+    disk_quota: 1G
     routes:
       - route: beta.fec.gov
       - route: transition.fec.gov
