@@ -3,7 +3,7 @@ applications:
   - name: proxy
     instances: 1
     memory: 256M
-    disk_quota: 256M
+    disk_quota: 700M
     routes:
       - route: dev.fec.gov
     stack: cflinuxfs3
