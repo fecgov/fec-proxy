@@ -1,6 +1,6 @@
 # fec-proxy
 
-Reverse proxy app to combine multiple applications and redirect rules for fec.gov.
+Reverse proxy app to combine multiple applications and redirect rules for fec.gov website.
 
 ## Configuration
 
