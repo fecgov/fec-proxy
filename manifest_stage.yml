@@ -6,7 +6,7 @@ applications:
     disk_quota: 1G
     routes:
       - route: stage.fec.gov
-    stack: cflinuxfs3
+    stack: cflinuxfs4
     buildpacks:
       - nginx_buildpack
     services:

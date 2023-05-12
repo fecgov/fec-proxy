@@ -8,7 +8,7 @@ applications:
       - route: beta.fec.gov
       - route: transition.fec.gov
       - route: www.fec.gov
-    stack: cflinuxfs3
+    stack: cflinuxfs4
     buildpacks:
       - nginx_buildpack
     services:
