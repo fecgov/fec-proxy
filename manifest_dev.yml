@@ -6,6 +6,7 @@ applications:
     disk_quota: 700M
     routes:
       - route: dev.fec.gov
+      - route: test-eqs.fec.gov
     stack: cflinuxfs4
     buildpacks:
       - nginx_buildpack
