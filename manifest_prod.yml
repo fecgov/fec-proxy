@@ -16,7 +16,6 @@ applications:
       - fec-creds-prod
     env:
       CMS_PROXY: "http://fec-prod-cms.apps.internal:8080"
-      EREGS_PROXY: "http://fec-prod-eregs.apps.internal:8080"
       S3_BUCKET_URL: "https://cg-47928592-406c-4536-8234-99b896e8d57d.s3-us-gov-west-1.amazonaws.com"
       S3_TRANSITION_URL: "http://cg-9b32b324-4671-48ca-b13b-a37b742f7443.s3-website-us-gov-west-1.amazonaws.com"
       S3_LEGAL_AND_DOWNLOADS_URL: "https://cg-519a459a-0ea3-42c2-b7bc-fa1143481f74.s3-us-gov-west-1.amazonaws.com"
