@@ -18,7 +18,7 @@ The proxy follows [other projects](https://github.com/fecgov/openFEC#creating-a-
 
 Manual deployment is an option if there are issues with CircleCI or you want more granular control of the process.
 
-Before you start, make sure you have version 7 of the [Cloud Foundry CLI](https://docs.cloudfoundry.org/devguide/cf-cli/install-go-cli.html) installed.
+Before you start, make sure you have version 8 of the [Cloud Foundry CLI](https://docs.cloudfoundry.org/devguide/cf-cli/install-go-cli.html) installed.
 
 When you're ready to deploy any changes, make sure you are on the `master` branch and have done a `git pull` so that all changes are pulled down.  Now run the following commands, where `<space>` is the desired space you'd like to deploy to (`dev`, `stage`, or `prod`):
 
