@@ -11,7 +11,7 @@ org=${2}
 branch=${3}
 
 # Get the space that corresponds with the branch name
-if [[ ${branch} == "develop" ]]; then
+if [[ ${branch} == "test-blocked-ips-dev" ]]; then
     echo "Branch is develop, deploying to dev space"
     space="dev"
 elif [[ ${branch} == release* ]]; then
@@ -46,8 +46,8 @@ fi
   fi
 )
 
-# Target space
-cf target -o ${org} -s ${space}
+# Call blocklist generator before deploy
+./generate_blockips.sh "${app}" "${space}" "${org}"
 
 # If the app exists, use rolling deployment
 if cf app ${app}; then
