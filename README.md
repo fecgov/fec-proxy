@@ -20,10 +20,11 @@ Manual deployment is an option if there are issues with CircleCI or you want mor
 
 Before you start, make sure you have version 8 of the [Cloud Foundry CLI](https://docs.cloudfoundry.org/devguide/cf-cli/install-go-cli.html) installed.
 
-When you're ready to deploy any changes, make sure you are on the `master` branch and have done a `git pull` so that all changes are pulled down.  Now run the following commands, where `<space>` is the desired space you'd like to deploy to (`dev`, `stage`, or `prod`):
+When you're ready to deploy any changes, make sure you are on the `master` branch and have done a `git pull` so that all changes are pulled down.  Now run the following commands, where `<space>` is the desired space you'd like to deploy to (`dev`, `stage`, or `prod`), and `<org>` is the cloud foundry organization the app belongs to:
 
 ```sh
-    cf target -s <space>
+    chmod +x generate_blockips.sh
+    ./generate_blockips.sh proxy <space> <org>
     cf push --strategy rolling proxy -f manifest_<space>.yml
     cf add-network-policy proxy cms
 ```
