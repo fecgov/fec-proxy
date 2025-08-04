@@ -25,7 +25,8 @@ else
   echo "# Auto-generated list of blocked IPs" > blockips.conf
   IFS=',' read -ra IPS <<< "$BLOCKED_IPS"
   for ip in "${IPS[@]}"; do
-    echo "if (\$http_x_forwarded_for ~* $ip) {" >> blockips.conf
+    escaped_ip=$(echo "$ip" | sed 's/\./\\./g')
+    echo "if (\$http_x_forwarded_for ~* ${escaped_ip}) {" >> blockips.conf
     echo "    return 403;" >> blockips.conf
     echo "}" >> blockips.conf
   done
