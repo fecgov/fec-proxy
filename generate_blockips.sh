@@ -29,4 +29,5 @@ else
     echo "    return 403;" >> blockips.conf
     echo "}" >> blockips.conf
   done
+  cat blockips.conf
 fi
