@@ -46,8 +46,8 @@ fi
   fi
 )
 
-# Target space
-cf target -o ${org} -s ${space}
+# Call blocklist generator before deploy
+./generate_blockips.sh "${app}" "${space}" "${org}"
 
 # If the app exists, use rolling deployment
 if cf app ${app}; then
