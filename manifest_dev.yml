@@ -12,6 +12,7 @@ applications:
       - nginx_buildpack
     services:
       - fec-creds-dev
+      - proxy-creds-dev
     env:
       CMS_PROXY: "http://fec-dev-cms.apps.internal:8080"
       S3_BUCKET_URL: "https://cg-449d4df6-4b9e-4539-891f-363302ca5907.s3-us-gov-west-1.amazonaws.com"
