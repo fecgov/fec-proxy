@@ -9,6 +9,8 @@ applications:
       - route: transition.fec.gov
       - route: www.fec.gov
       - route: eqs.fec.gov
+      - route: saos.fec.gov
+      - route: sers.fec.gov
     stack: cflinuxfs4
     buildpacks:
       - nginx_buildpack
