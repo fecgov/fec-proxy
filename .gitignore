@@ -1,1 +1,4 @@
 Staticfile.auth
+blockips.conf
+ratelimitedips.conf
+ratelimitedroutes.conf
