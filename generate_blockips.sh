@@ -27,6 +27,31 @@ RATE_LIMITED_ROUTES=$(echo "$VCAP_SERVICES" | jq -r '
   | select(.credentials.RATE_LIMITED_ROUTES != null)
   | .credentials.RATE_LIMITED_ROUTES' | head -n 1)
 
+KEEPALIVE_TIMEOUT=$(echo "$VCAP_SERVICES" | jq -r '
+  .["user-provided"][]?
+  | select(.credentials.KEEPALIVE_TIMEOUT != null)
+  | .credentials.KEEPALIVE_TIMEOUT' | head -n 1)
+
+PROXY_CONNECT_TIMEOUT=$(echo "$VCAP_SERVICES" | jq -r '
+  .["user-provided"][]?
+  | select(.credentials.PROXY_CONNECT_TIMEOUT != null)
+  | .credentials.PROXY_CONNECT_TIMEOUT' | head -n 1)
+
+PROXY_READ_TIMEOUT=$(echo "$VCAP_SERVICES" | jq -r '
+  .["user-provided"][]?
+  | select(.credentials.PROXY_READ_TIMEOUT != null)
+  | .credentials.PROXY_READ_TIMEOUT' | head -n 1)
+
+RATE_LIMIT_RATE=$(echo "$VCAP_SERVICES" | jq -r '
+  .["user-provided"][]?
+  | select(.credentials.RATE_LIMIT_RATE != null)
+  | .credentials.RATE_LIMIT_RATE' | head -n 1)
+
+RATE_LIMIT_BURST=$(echo "$VCAP_SERVICES" | jq -r '
+  .["user-provided"][]?
+  | select(.credentials.RATE_LIMIT_BURST != null)
+  | .credentials.RATE_LIMIT_BURST' | head -n 1)
+
 if [[ -z "$BLOCKED_IPS" || "$BLOCKED_IPS" == "null" ]]; then
   echo "No BLOCKED_IPS set in cloud.gov for app '${app}', skipping blockips.conf generation"
   echo "# No blocked IPs configured" > blockips.conf
@@ -68,3 +93,35 @@ else
     echo "~^1:${route} \$client_ip;" >> ratelimitedroutes.conf
   done
 fi
+
+KEEPALIVE_TIMEOUT=${KEEPALIVE_TIMEOUT:-90}
+PROXY_CONNECT_TIMEOUT=${PROXY_CONNECT_TIMEOUT:-90}
+PROXY_READ_TIMEOUT=${PROXY_READ_TIMEOUT:-90}
+RATE_LIMIT_RATE=${RATE_LIMIT_RATE:-10r/m}
+RATE_LIMIT_BURST=${RATE_LIMIT_BURST:-10}
+
+[[ "$KEEPALIVE_TIMEOUT" == "null" ]] && KEEPALIVE_TIMEOUT=90
+[[ "$PROXY_CONNECT_TIMEOUT" == "null" ]] && PROXY_CONNECT_TIMEOUT=90
+[[ "$PROXY_READ_TIMEOUT" == "null" ]] && PROXY_READ_TIMEOUT=90
+[[ "$RATE_LIMIT_RATE" == "null" ]] && RATE_LIMIT_RATE=10r/m
+[[ "$RATE_LIMIT_BURST" == "null" ]] && RATE_LIMIT_BURST=10
+
+KEEPALIVE_TIMEOUT=$(echo "$KEEPALIVE_TIMEOUT" | xargs)
+PROXY_CONNECT_TIMEOUT=$(echo "$PROXY_CONNECT_TIMEOUT" | xargs)
+PROXY_READ_TIMEOUT=$(echo "$PROXY_READ_TIMEOUT" | xargs)
+RATE_LIMIT_RATE=$(echo "$RATE_LIMIT_RATE" | xargs)
+RATE_LIMIT_BURST=$(echo "$RATE_LIMIT_BURST" | xargs)
+
+echo "Generating proxysettings.conf from cloud.gov environment variable"
+{
+  echo "# Auto-generated proxy settings"
+  echo "keepalive_timeout ${KEEPALIVE_TIMEOUT};"
+  echo "proxy_connect_timeout ${PROXY_CONNECT_TIMEOUT};"
+  echo "proxy_read_timeout ${PROXY_READ_TIMEOUT};"
+  echo "limit_req_zone \$limited_route_key zone=limited_routes_by_client:5m rate=${RATE_LIMIT_RATE};"
+  if [[ "$RATE_LIMIT_BURST" == "0" ]]; then
+    echo "limit_req zone=limited_routes_by_client;"
+  else
+    echo "limit_req zone=limited_routes_by_client burst=${RATE_LIMIT_BURST} nodelay;"
+  fi
+} > proxysettings.conf
