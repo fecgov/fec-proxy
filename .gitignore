@@ -3,3 +3,5 @@ blockips.conf
 ratelimitedips.conf
 ratelimitedroutes.conf
 proxysettings.conf
+blockedquerystrings.conf
+blockedquerystringroutes.conf
