@@ -27,6 +27,16 @@ RATE_LIMITED_ROUTES=$(echo "$VCAP_SERVICES" | jq -r '
   | select(.credentials.RATE_LIMITED_ROUTES != null)
   | .credentials.RATE_LIMITED_ROUTES' | head -n 1)
 
+BLOCKED_QUERY_STRING_KEYWORDS=$(echo "$VCAP_SERVICES" | jq -r '
+  .["user-provided"][]?
+  | select(.credentials.BLOCKED_QUERY_STRING_KEYWORDS != null)
+  | .credentials.BLOCKED_QUERY_STRING_KEYWORDS' | head -n 1)
+
+BLOCKED_QUERY_STRING_ROUTES=$(echo "$VCAP_SERVICES" | jq -r '
+  .["user-provided"][]?
+  | select(.credentials.BLOCKED_QUERY_STRING_ROUTES != null)
+  | .credentials.BLOCKED_QUERY_STRING_ROUTES' | head -n 1)
+
 KEEPALIVE_TIMEOUT=$(echo "$VCAP_SERVICES" | jq -r '
   .["user-provided"][]?
   | select(.credentials.KEEPALIVE_TIMEOUT != null)
@@ -91,6 +101,44 @@ else
     route=$(echo "$route" | xargs)
     [[ -z "$route" ]] && continue
     echo "~^1:${route} \$client_ip;" >> ratelimitedroutes.conf
+  done
+fi
+
+if [[ -z "$BLOCKED_QUERY_STRING_KEYWORDS" || "$BLOCKED_QUERY_STRING_KEYWORDS" == "null" ]]; then
+  echo "No BLOCKED_QUERY_STRING_KEYWORDS set in cloud.gov for app '${app}', skipping blockedquerystrings.conf generation"
+  echo "# No blocked query string keywords configured" > blockedquerystrings.conf
+else
+  BLOCKED_QUERY_STRING_KEYWORDS=$(echo "$BLOCKED_QUERY_STRING_KEYWORDS" | xargs)
+  if [[ -z "$BLOCKED_QUERY_STRING_KEYWORDS" ]]; then
+    echo "BLOCKED_QUERY_STRING_KEYWORDS is empty after trimming whitespace" >&2
+    exit 1
+  fi
+
+  if [[ "$BLOCKED_QUERY_STRING_KEYWORDS" =~ [\"\;\{\}] ]]; then
+    echo "BLOCKED_QUERY_STRING_KEYWORDS contains unsupported characters" >&2
+    exit 1
+  fi
+
+  echo "Generating blockedquerystrings.conf from cloud.gov environment variable"
+  echo "# Auto-generated list of blocked query string keywords" > blockedquerystrings.conf
+  echo "\"~*(^|%[0-9A-F]{2}|[^A-Za-z0-9])(${BLOCKED_QUERY_STRING_KEYWORDS})(%[0-9A-F]{2}|[^A-Za-z0-9]|$)\" 1;" >> blockedquerystrings.conf
+fi
+
+if [[ -z "$BLOCKED_QUERY_STRING_ROUTES" || "$BLOCKED_QUERY_STRING_ROUTES" == "null" ]]; then
+  echo "No BLOCKED_QUERY_STRING_ROUTES set in cloud.gov for app '${app}', skipping blockedquerystringroutes.conf generation"
+  echo "# No blocked query string routes configured" > blockedquerystringroutes.conf
+else
+  echo "Generating blockedquerystringroutes.conf from cloud.gov environment variable"
+  echo "# Auto-generated list of blocked query string routes" > blockedquerystringroutes.conf
+  IFS=',' read -ra ROUTES <<< "$BLOCKED_QUERY_STRING_ROUTES"
+  for route in "${ROUTES[@]}"; do
+    route=$(echo "$route" | xargs)
+    [[ -z "$route" ]] && continue
+    if [[ "$route" =~ [\"\;\{\}] ]]; then
+      echo "BLOCKED_QUERY_STRING_ROUTES contains unsupported characters" >&2
+      exit 1
+    fi
+    echo "~^1:${route} 1;" >> blockedquerystringroutes.conf
   done
 fi
 
