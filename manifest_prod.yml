@@ -13,7 +13,7 @@ applications:
       - route: sers.fec.gov
     stack: cflinuxfs4
     buildpacks:
-      - https://github.com/cloudfoundry/nginx-buildpack.git
+      - https://github.com/cloudfoundry/nginx-buildpack.git#v1.2.41 
     services:
       - fec-creds-prod
       - proxy-creds-prod
